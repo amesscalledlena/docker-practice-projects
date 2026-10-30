@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Notes</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 36rem; margin: 2rem auto; padding: 0 1rem; }
+    li { margin: .3rem 0; }
+    small { color: #666; }
+  </style>
+</head>
+<body>
+  <h1>Notes</h1>
+  <form id="form">
+    <input id="text" placeholder="Write a note" required>
+    <button>Add</button>
+  </form>
+  <ul id="list"></ul>
+  <script>
+    async function load() {
+      const res = await fetch("/api/notes");
+      const notes = await res.json();
+      document.getElementById("list").innerHTML = notes
+        .map(n => `<li>${n.text.replace(/</g, "&lt;")} <small>${new Date(n.created_at).toLocaleString()}</small></li>`)
+        .join("");
+    }
+    document.getElementById("form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const input = document.getElementById("text");
+      await fetch("/api/notes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: input.value }),
+      });
+      input.value = "";
+      load();
+    });
+    load();
+  </script>
+</body>
+</html>

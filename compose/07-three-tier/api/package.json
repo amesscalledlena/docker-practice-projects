@@ -1,0 +1,14 @@
+{
+  "name": "notes-api",
+  "version": "1.0.0",
+  "description": "Notes API: Express + PostgreSQL",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2",
+    "pg": "^8.13.1"
+  }
+}

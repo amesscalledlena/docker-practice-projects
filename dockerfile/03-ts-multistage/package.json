@@ -1,0 +1,20 @@
+{
+  "name": "quotes-service",
+  "version": "1.0.0",
+  "description": "TypeScript service used for a multi-stage Dockerfile exercise",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/server.js",
+    "dev": "tsc -w -p tsconfig.json"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.17.0",
+    "typescript": "^5.6.3"
+  }
+}
